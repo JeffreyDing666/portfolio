@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+/* 主题变量：深色背景、白色文字与渐变强调色（AGENTS.md 设计要求） */
+@theme {
+  --color-background: #0a0a0a;
+  --color-foreground: #ffffff;
+  --color-surface: #141414;
+  --color-muted: #a3a3a3;
+  --color-line: #262626;
+  --color-accent-from: #c084fc;
+  --color-accent-to: #38bdf8;
+  --animate-fade-up: fade-up 0.7s ease-out both;
+}
+
+/* 首屏元素的入场动画 */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--color-accent-from);
+    color: var(--color-background);
+  }
+}
+
+/* 尊重系统「减少动画」设置 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-fade-up {
+    animation: none;
+  }
+}
